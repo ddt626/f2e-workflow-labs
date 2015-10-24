@@ -47,4 +47,19 @@ gulp.task('clean', function(cb){
 		console.log('Deleted files/folders:\n', paths.join('\n'));
 		cb();
 	});
-})
+});
+
+gulp.task('output-app', ['clean-app'], function(){
+	gulp.src('app/**/*.js')
+		.pipe(gulp.dest('output-app'));
+});
+
+gulp.task('clean-app', function(cb){
+	del(['output-app/**','!output-app']).then(function (paths) {
+		cb();
+	});
+});
+
+gulp.task('watch', function(){
+	gulp.watch('app/**/*.js', ['output-app']);
+});
