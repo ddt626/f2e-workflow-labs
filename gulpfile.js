@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var del = require('del');
+var concat = require('gulp-concat')
 
 gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
@@ -61,5 +62,14 @@ gulp.task('clean-app', function(cb){
 });
 
 gulp.task('watch', function(){
-	gulp.watch('app/**/*.js', ['output-app']);
+	gulp.watch('app/**/*.js', ['app']);
+});
+
+gulp.task('app', function(){
+	gulp.src([
+		'app/**/*.module.js',
+		'app/**/*.js',
+		])
+		.pipe(concat('app.js'))
+		.pipe(gulp.dest('assets'));
 });
