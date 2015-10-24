@@ -6,7 +6,7 @@ gulp.task('default', ['myTask1', 'myTask2'], function(){
 
 gulp.task('myTask1', function(cb){
 	console.log('Hello task1');
-	cb();
+	// cb();
 });
 
 gulp.task('myTask2', function(cb){
