@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ddt626/f2e-workflow-labs/issues"
   },
-  "homepage": "https://github.com/ddt626/f2e-workflow-labs"
+  "homepage": "https://github.com/ddt626/f2e-workflow-labs",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
 }
