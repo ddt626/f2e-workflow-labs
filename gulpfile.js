@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var del = require('del');
 
 gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
@@ -34,3 +35,15 @@ gulp.task('output3', function(){
 	])
 		.pipe(gulp.dest('output3'));
 });
+
+gulp.task('clean', function(){
+	////會把bootstap一併刪除，非刪除bootstrap底下的檔案
+	// del(['output2/bootstrap/**']).then(function (paths) {
+	// 	console.log('Deleted files/folders:\n', paths.join('\n'));
+	// });
+	
+	////只刪除bootstrap底下的檔案
+	del(['output2/bootstrap/**','!output2/bootstrap']).then(function (paths) {
+		console.log('Deleted files/folders:\n', paths.join('\n'));
+	});
+})

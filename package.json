@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ddt626/f2e-workflow-labs",
   "devDependencies": {
+    "del": "^2.0.2",
     "gulp": "^3.9.0"
   }
 }
