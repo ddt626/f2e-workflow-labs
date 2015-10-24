@@ -28,7 +28,7 @@ gulp.task('output2', function(){
 		.pipe(gulp.dest('output2'));
 });
 
-gulp.task('output3', function(){
+gulp.task('output3', ['clean', 'myTask2'], function(){
 	gulp.src([
 		'assets/vendor/**/*.js',
 		'assets/vendor/**/*.css'
@@ -36,14 +36,15 @@ gulp.task('output3', function(){
 		.pipe(gulp.dest('output3'));
 });
 
-gulp.task('clean', function(){
+gulp.task('clean', function(cb){
 	////會把bootstap一併刪除，非刪除bootstrap底下的檔案
 	// del(['output2/bootstrap/**']).then(function (paths) {
 	// 	console.log('Deleted files/folders:\n', paths.join('\n'));
 	// });
 	
 	////只刪除bootstrap底下的檔案
-	del(['output2/bootstrap/**','!output2/bootstrap']).then(function (paths) {
+	del(['output3/**','!output3']).then(function (paths) {
 		console.log('Deleted files/folders:\n', paths.join('\n'));
+		cb();
 	});
 })
