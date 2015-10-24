@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-gulp.task('default', function(){
+gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
 });
 
