@@ -1,8 +1,1 @@
-!function(s){function t(e){if(r[e])return r[e].exports;var o=r[e]={exports:{},id:e,loaded:!1};return s[e].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var r={};return t.m=s,t.c=r,t.p="",t(0)}([/*!*****************!*\
-  !*** ./main.js ***!
-  \*****************/
-function(s,t,r){var e=r(/*! ./gulp/config */1);console.log("main js, asset 123 "+e.assetsdir)},/*!************************!*\
-  !*** ./gulp/config.js ***!
-  \************************/
-function(s,t){s.exports={assetsdir:"assets",uglifyOption:{mangle:!1}}}]);
-//# sourceMappingURL=bundle.js.map
+!function(s){function t(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return s[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var e={};return t.m=s,t.c=e,t.p="",t(0)}([function(s,t,e){var r=e(1);console.log("main js, asset 123 "+r.assetsdir)},function(s,t){s.exports={assetsdir:"assets",uglifyOption:{mangle:!1}}}]);
