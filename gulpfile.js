@@ -1,8 +1,9 @@
 var gulp = require('gulp');
 var del = require('del');
-var concat = require('gulp-concat')
-var uglify = require('gulp-uglify')
-var rename = require('gulp-rename')
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var minifyHtml = require('gulp-minify-html');
 
 gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
@@ -86,4 +87,20 @@ gulp.task('app', function(){
 			}
 		))
 		.pipe(gulp.dest('assets'));
+});
+
+gulp.task('miniHtml', function(){
+	  var opts = {
+    conditionals: true,
+    spare:true
+  };
+	
+	gulp.src('index.html')
+		.pipe(minifyHtml(opts))
+		.pipe(rename(
+			{
+				extname: '.min.html'
+			}
+		))
+		.pipe(gulp.dest('dist'))
 });
