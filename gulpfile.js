@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
+var less = require('gulp-less');
 
 gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
@@ -115,4 +116,17 @@ gulp.task('miniCss', function(){
 			}
 		))
 		.pipe(gulp.dest('dist'))
-})
+});
+
+gulp.task('less',function(){
+	gulp.src('assets/*.less')
+		.pipe(less())
+		.pipe(gulp.dest('less_to_css'))
+		.pipe(minifyCss())
+		.pipe(rename(
+			{
+				extname:'.min.css'
+			}
+		))
+		.pipe(gulp.dest('less_to_css'));
+});
