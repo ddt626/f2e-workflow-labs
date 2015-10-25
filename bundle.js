@@ -54,6 +54,10 @@
 		$('body').on('click', function(){
 			console.log('click');
 			__webpack_require__(3);
+			
+			var imgUrl = __webpack_require__(7);
+			// console.log(imgUrl);
+			$('#pic').append('<img src="'+imgUrl+ '">');
 		})
 	})
 
@@ -9632,6 +9636,12 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "e0dbc995ad5beeedcf74bd2f755a2f81.jpg"
 
 /***/ }
 /******/ ]);
