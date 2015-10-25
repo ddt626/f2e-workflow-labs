@@ -40,29 +40,31 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var config = __webpack_require__(1)
+	var config = __webpack_require__(28)
 
-	var $ = __webpack_require__(2)
+	var $ = __webpack_require__(29)
 
 	console.log('main js, asset 123 ' + config.assetsdir);
 
 	$(function() {
 		$('body').on('click', function(){
 			console.log('click');
-			__webpack_require__(3);
+			__webpack_require__(30);
 			
-			var imgUrl = __webpack_require__(7);
+			var imgUrl = __webpack_require__(34);
 			// console.log(imgUrl);
 			$('#pic').append('<img src="'+imgUrl+ '">');
 		})
 	})
 
 /***/ },
-/* 1 */
+
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -72,7 +74,8 @@
 	}
 
 /***/ },
-/* 2 */
+
+/***/ 29:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9288,16 +9291,17 @@
 
 
 /***/ },
-/* 3 */
+
+/***/ 30:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(4);
+	var content = __webpack_require__(31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
+	var update = __webpack_require__(33)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -9314,10 +9318,11 @@
 	}
 
 /***/ },
-/* 4 */
+
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(5)();
+	exports = module.exports = __webpack_require__(32)();
 	// imports
 
 
@@ -9328,7 +9333,8 @@
 
 
 /***/ },
-/* 5 */
+
+/***/ 32:
 /***/ function(module, exports) {
 
 	/*
@@ -9384,7 +9390,8 @@
 
 
 /***/ },
-/* 6 */
+
+/***/ 33:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9638,10 +9645,12 @@
 
 
 /***/ },
-/* 7 */
+
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "e0dbc995ad5beeedcf74bd2f755a2f81.jpg"
+	module.exports = __webpack_require__.p + "tmp/e0dbc995ad5beeedcf74bd2f755a2f81.jpg"
 
 /***/ }
-/******/ ]);
+
+/******/ });

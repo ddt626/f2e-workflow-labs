@@ -1,13 +1,16 @@
 // webpack.config.js
 module.exports = {
-  entry: './main.js',
+  entry: {
+     bundle: './main.js',
+     appModule: './app/app.module.js'
+  },
   output: {
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders:[
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.jpg$/, loader: 'url-loader?limit=8000' },
+      { test: /\.jpg$/, loader: 'url-loader?name=tmp/[hash].[ext]&limit=8000' },
     ]
   }
 };
