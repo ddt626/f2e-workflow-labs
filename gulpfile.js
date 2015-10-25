@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var minifyHtml = require('gulp-minify-html');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('default', ['myTask1', 'myTask2'], function(){
 	console.log('Hello Gulp');
@@ -104,3 +105,14 @@ gulp.task('miniHtml', function(){
 		))
 		.pipe(gulp.dest('dist'))
 });
+
+gulp.task('miniCss', function(){
+	gulp.src('assets/*.css')
+		.pipe(minifyCss())
+		.pipe(rename(
+			{
+				extname:'.min.css'
+			}
+		))
+		.pipe(gulp.dest('dist'))
+})
