@@ -21,6 +21,15 @@
 
 })();
 
+(function() {
+    'use strict';
+
+    angular.module('app.dashboard', [
+        'app.core',
+        'app.widgets'
+      ]);
+})();
+
 (function () {
     'use strict';
 
@@ -30,15 +39,6 @@
             'blocks.exception', 'blocks.logger', 'blocks.router',
             'ui.router', 'ngplus'
         ]);
-})();
-
-(function() {
-    'use strict';
-
-    angular.module('app.dashboard', [
-        'app.core',
-        'app.widgets'
-      ]);
 })();
 
 (function() {
@@ -121,6 +121,83 @@
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'
+                    }
+                }
+            }
+        ];
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.dashboard')
+        .controller('DashboardController', DashboardController);
+
+    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+    /* @ngInject */
+    function DashboardController($q, dataservice, logger) {
+        var vm = this;
+        vm.news = {
+            title: 'hottowel',
+            description: 'Hot Towel Angular is a SPA template for Angular developers.'
+        };
+        vm.messageCount = 0;
+        vm.people = [];
+        vm.title = 'Dashboard';
+
+        activate();
+
+        function activate() {
+            var promises = [getMessageCount(), getPeople()];
+            return $q.all(promises).then(function() {
+                logger.info('Activated Dashboard View');
+            });
+        }
+
+        function getMessageCount() {
+            return dataservice.getMessageCount().then(function (data) {
+                vm.messageCount = data;
+                return vm.messageCount;
+            });
+        }
+
+        function getPeople() {
+            return dataservice.getPeople().then(function (data) {
+                vm.people = data;
+                return vm.people;
+            });
+        }
+    }
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.dashboard')
+        .run(appRun);
+
+    appRun.$inject = ['routerHelper'];
+    /* @ngInject */
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+            {
+                state: 'dashboard',
+                config: {
+                    url: '/',
+                    templateUrl: 'app/dashboard/dashboard.html',
+                    controller: 'DashboardController',
+                    controllerAs: 'vm',
+                    title: 'dashboard',
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-dashboard"></i> Dashboard'
                     }
                 }
             }
@@ -232,83 +309,6 @@
                 return exception.catcher('XHR Failed for getPeople')(e);
             }
         }
-    }
-})();
-
-(function () {
-    'use strict';
-
-    angular
-        .module('app.dashboard')
-        .controller('DashboardController', DashboardController);
-
-    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
-    /* @ngInject */
-    function DashboardController($q, dataservice, logger) {
-        var vm = this;
-        vm.news = {
-            title: 'hottowel',
-            description: 'Hot Towel Angular is a SPA template for Angular developers.'
-        };
-        vm.messageCount = 0;
-        vm.people = [];
-        vm.title = 'Dashboard';
-
-        activate();
-
-        function activate() {
-            var promises = [getMessageCount(), getPeople()];
-            return $q.all(promises).then(function() {
-                logger.info('Activated Dashboard View');
-            });
-        }
-
-        function getMessageCount() {
-            return dataservice.getMessageCount().then(function (data) {
-                vm.messageCount = data;
-                return vm.messageCount;
-            });
-        }
-
-        function getPeople() {
-            return dataservice.getPeople().then(function (data) {
-                vm.people = data;
-                return vm.people;
-            });
-        }
-    }
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.dashboard')
-        .run(appRun);
-
-    appRun.$inject = ['routerHelper'];
-    /* @ngInject */
-    function appRun(routerHelper) {
-        routerHelper.configureStates(getStates());
-    }
-
-    function getStates() {
-        return [
-            {
-                state: 'dashboard',
-                config: {
-                    url: '/',
-                    templateUrl: 'app/dashboard/dashboard.html',
-                    controller: 'DashboardController',
-                    controllerAs: 'vm',
-                    title: 'dashboard',
-                    settings: {
-                        nav: 1,
-                        content: '<i class="fa fa-dashboard"></i> Dashboard'
-                    }
-                }
-            }
-        ];
     }
 })();
 
