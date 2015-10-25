@@ -42,9 +42,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var config = __webpack_require__(1)
+
+	console.log('main js, asset 123 ' + config.assetsdir);
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
-	console.log('main2');
+	module.exports = {
+		assetsdir : 'assets',
+		
+		uglifyOption: {mangle: false},
+	}
 
 /***/ }
 /******/ ]);
