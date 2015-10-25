@@ -1,10 +1,7 @@
 // webpack.config.js
 module.exports = {
-  entry: {
-   bundle1: './main.js',
-   bundle2: './main2.js'
-  },
+  entry: './main.js',
   output: {
-    filename: '[name].js'
+    filename: 'bundle.js'
   }
 };
