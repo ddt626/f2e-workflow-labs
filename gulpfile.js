@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var del = require('del');
+var config = require('./config');
+
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -23,22 +25,22 @@ gulp.task('myTask2', function(cb){
 });
 
 gulp.task('output1', function(){
-	gulp.src('assets/vendor/bootstrap/**/*.js')
+	gulp.src(config.assetsdir + '/vendor/bootstrap/**/*.js')
 		.pipe(gulp.dest('output1'));
 });
 
 gulp.task('output2', function(){
-	gulp.src('assets/vendor/bootstrap/**/*.js',
+	gulp.src(config.assetsdir + '/vendor/bootstrap/**/*.js',
 		{
-			base:'assets/vendor'
+			base:config.assetsdir + '/vendor'
 		})
 		.pipe(gulp.dest('output2'));
 });
 
 gulp.task('output3', ['clean', 'myTask2'], function(){
 	gulp.src([
-		'assets/vendor/**/*.js',
-		'assets/vendor/**/*.css'
+		config.assetsdir + '/vendor/**/*.js',
+		config.assetsdir + '/vendor/**/*.css'
 	])
 		.pipe(gulp.dest('output3'));
 });
@@ -76,22 +78,18 @@ gulp.task('app', function(){
 		'app/**/*.module.js',
 		'app/**/*.js',
 		])
-		.pipe(gulp.dest('assets/src'))
+		.pipe(gulp.dest(config.assetsdir + '/src'))
 		.pipe(sourcemaps.init())
 			.pipe(concat('app.js'))
-			.pipe(gulp.dest('assets'))
-			.pipe(uglify(
-				{
-					mangle: false
-				}
-			))
+			.pipe(gulp.dest(config.assetsdir + ''))
+			.pipe(uglify(config.uglifyOption))
 			.pipe(rename(
 				{
 					extname: '.min.js'
 				}
 			))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('assets'));
+		.pipe(gulp.dest(config.assetsdir + ''));
 });
 
 gulp.task('miniHtml', function(){
@@ -111,7 +109,7 @@ gulp.task('miniHtml', function(){
 });
 
 gulp.task('miniCss', function(){
-	gulp.src('assets/*.css')
+	gulp.src(config.assetsdir + '/*.css')
 		.pipe(minifyCss())
 		.pipe(rename(
 			{
@@ -121,8 +119,10 @@ gulp.task('miniCss', function(){
 		.pipe(gulp.dest('dist'))
 });
 
+
+
 gulp.task('less',function(){
-	gulp.src('assets/*.less')
+	gulp.src(config.assetsdir + '/*.less')
 		.pipe(less())
 		.pipe(gulp.dest('less_to_css'))
 		.pipe(minifyCss())
